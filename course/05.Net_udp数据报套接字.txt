@@ -1,0 +1,57 @@
+基于udp 套接字的服务端
+	
+	udp 套接字服务端流程：
+
+		1. 创建数据报套接字
+			sockfd = socket(AF_INET,SOCK_DGRAM)
+		
+		2. 绑定地址
+			sockfd.bind(addr)
+
+		3. 消息的收发
+			接收信息：
+				data,addr = sockfd.recvfrom(buffersize)
+				功能：接收udp消息
+				参数：每次最多接收多大的消息
+				返回值：data	接收到的数据; addr 消息发送端的地址
+			注：一次接收一个数据报，如果数据报大小大于buffersize则会丢失部分消息
+
+			发送信息：
+				sockfd.sendto(data,addr)
+				功能：发送udp消息
+				参数：data 发送的消息	bytes格式；addr 目标地址
+				返回值：发送的字节数
+
+		4. 关闭套接字
+			sockfd.close()
+
+	udp 套接字客户端流程：
+
+		1. 创建数据报套接字
+			sockfd = socket(AF_INET,SOCK_DGRAM)
+
+		2. 消息收发
+			recvfrom/sendto
+
+		3. 关闭套接字
+			sockfd.close()
+
+
+	cookie:
+		
+		sys模块
+			sys.argv 属性
+				功能：获取命令行参数，得到一个列表
+			
+			命令本身是argv[0]
+			后面的参数从argv[1]开始，默认以空格分隔
+			使用引号引起来的内容算作一个整体
+			命令行参数都以字符串放入列表
+			示例(exercise.py)：
+				# 在程序文件的第一行加下面内容
+				再添加程序的执行权限chmod 755 exercise.py
+				修改后即可通过 ./exercise.py 运行程序
+				
+				#!/usr/bin/env python3		
+				import sys
+				print(sys.argv)		# --> ['exercise.py']

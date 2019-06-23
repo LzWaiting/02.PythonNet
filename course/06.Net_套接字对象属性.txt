@@ -1,0 +1,27 @@
+套接字对象
+	
+	s 代表一个套接字
+	s.family:获取套接字地址族类型
+	s.type:获取套接字类型
+	
+	s.getsockname():获取套接字的绑定地址
+	s.fileno():获取套接字的文件描述符
+		* 文件描述符：每一个IO事件操作系统都会分配一个不同的非负整数作为编号，该非负整数即为这个IO的文件描述符
+		文件描述符是操作系统识别IO的唯一标志
+	s.getpeername():获取客户端连接套接字对应地址
+	
+	s.setsockopt(level,option,value)
+		功能:设置套接字选项，丰富或则修改套接字属性功能
+		参数：level  选项类别	SOL_SOCKET(套接字基本选项)
+			 option 具体选项 
+			 value  选项值	布尔值（0/1）
+
+	s.getsockopt(level,option)
+		功能:设置套接字选项值
+		参数：level  选项类别	
+			 option 具体选项
+		返回值：选项对应值
+	* 如果要设置套接字选项，在创建套接字之后立即设置
+
+	示例：
+		见sock_attr.py

@@ -1,0 +1,38 @@
+Linux文件类型:
+
+	b(块设备文件)		# 设备驱动文件
+	c(字符设备文件)	# 设备驱动文件
+	d(目录)
+	-(普通文件)
+	l(链接)			# 快捷键
+	s(套接字)	
+	p(管道)
+
+本地套接字
+
+	作用:用于本地不同的程序间进行通信
+
+	创建流程:
+		1. 创建本地套接字
+			sockfd = socket(AF_UNIX,SOCK_STREAM)
+		2. 绑定本地套接字文件
+			* 选定文件位置和名称
+			* sockfd.bind(path)
+		3. 监听 listen()
+		4. 消息收发:recv send
+
+	cookie:
+		
+		1. os.path.exists(path)
+		功能:判断一个文件是否存在
+		参数:目标文件
+		返回值:存在返回True,否则返回False
+		
+		2. os.remove()	os.unlink()
+		功能:删除一个文件
+		参数:目标文件
+
+		示例:
+			>>> os.path.exists('./exercise.py')	# 查看文件是否存在
+			--> True 	# 文件存在
+			>>> os.remove('./exercise.py')	# 删除指定文件
